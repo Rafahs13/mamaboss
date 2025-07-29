@@ -132,17 +132,17 @@ function App() {
         <GoalProvider>
           <EventProvider>
             <FinanceProvider>
-                      <CourseProvider>
-          <SettingsProvider>
-            <SubscriptionProvider>
-              <AppContent />
-            </SubscriptionProvider>
-          </SettingsProvider>
-        </CourseProvider>
-      </FinanceProvider>
-    </EventProvider>
-  </GoalProvider>
-</TaskProvider>
+              <CourseProvider>
+                <SettingsProvider>
+                  <SubscriptionProvider>
+                    <AppContent />
+                  </SubscriptionProvider>
+                </SettingsProvider>
+              </CourseProvider>
+            </FinanceProvider>
+          </EventProvider>
+        </GoalProvider>
+      </TaskProvider>
     </AuthProvider>
   );
 }
