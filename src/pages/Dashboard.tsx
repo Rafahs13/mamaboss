@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Box,
   Grid,
-  GridItem,
   VStack,
   HStack,
   Text,
@@ -10,39 +9,19 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Progress,
-  Badge,
   Button,
-  IconButton,
   useColorModeValue,
   Flex,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
   Divider,
-  List,
-  ListItem,
-  ListIcon,
 } from '@chakra-ui/react';
 import {
   CheckCircle,
-  Clock,
-  Target,
-  Calendar,
-  DollarSign,
-  TrendingUp,
-  TrendingDown,
   Plus,
-  MoreVertical,
   Heart,
   Briefcase,
   Users,
-  BookOpen,
 } from 'lucide-react';
-import { Event } from '../types';
-import { formatCurrency, formatDate, formatRelativeDate } from '../utils/formatters';
+import { formatCurrency } from '../utils/formatters';
 import { StatCard } from '../components/dashboard/StatCard';
 import { TaskItem } from '../components/dashboard/TaskItem';
 import { GoalCard } from '../components/dashboard/GoalCard';
