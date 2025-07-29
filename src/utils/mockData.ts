@@ -1,0 +1,303 @@
+import { User, Task, Goal, Event, Finance, Course } from '../types';
+
+// Usuário mock
+export const mockUser: User = {
+  id: '1',
+  name: 'Rafaela Silva',
+  email: 'rafaela@mamaboss.com.br',
+  avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+  createdAt: new Date('2024-01-01'),
+  updatedAt: new Date(),
+};
+
+// Tarefas mock
+export const mockTasks: Task[] = [
+  {
+    id: '1',
+    userId: '1',
+    title: 'Reunião com cliente',
+    description: 'Apresentar proposta de marketing digital',
+    category: 'trabalho',
+    priority: 'alta',
+    completed: false,
+    dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000), // Amanhã
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '2',
+    userId: '1',
+    title: 'Consulta pediatra',
+    description: 'Levar João para consulta de rotina',
+    category: 'familia',
+    priority: 'alta',
+    completed: false,
+    dueDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // Em 2 dias
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '3',
+    userId: '1',
+    title: 'Academia',
+    description: 'Treino de pernas e glúteos',
+    category: 'pessoal',
+    priority: 'media',
+    completed: true,
+    dueDate: new Date(),
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '4',
+    userId: '1',
+    title: 'Planejar conteúdo da semana',
+    description: 'Criar posts para Instagram e blog',
+    category: 'trabalho',
+    priority: 'media',
+    completed: false,
+    dueDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // Em 3 dias
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '5',
+    userId: '1',
+    title: 'Comprar presente aniversário',
+    description: 'Presente para amiga que faz aniversário no fim de semana',
+    category: 'pessoal',
+    priority: 'baixa',
+    completed: false,
+    dueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // Em 5 dias
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
+
+// Metas mock
+export const mockGoals: Goal[] = [
+  {
+    id: '1',
+    userId: '1',
+    title: 'Expandir o negócio',
+    description: 'Abrir uma nova filial da loja online',
+    category: 'trabalho',
+    progress: 65,
+    status: 'ativa',
+    dueDate: new Date('2024-12-31'),
+    createdAt: new Date('2024-01-15'),
+    updatedAt: new Date('2024-01-20'),
+  },
+  {
+    id: '2',
+    userId: '1',
+    title: 'Fazer exercícios 3x por semana',
+    description: 'Manter uma rotina de exercícios consistente',
+    category: 'saude',
+    progress: 80,
+    status: 'ativa',
+    dueDate: new Date('2024-06-30'),
+    createdAt: new Date('2024-01-10'),
+    updatedAt: new Date('2024-01-18'),
+  },
+  {
+    id: '3',
+    userId: '1',
+    title: 'Poupar R$ 10.000',
+    description: 'Criar uma reserva de emergência',
+    category: 'financeiro',
+    progress: 45,
+    status: 'ativa',
+    dueDate: new Date('2024-12-31'),
+    createdAt: new Date('2024-01-05'),
+    updatedAt: new Date('2024-01-15'),
+  },
+  {
+    id: '4',
+    userId: '1',
+    title: 'Ler 12 livros este ano',
+    description: 'Desenvolver o hábito da leitura',
+    category: 'pessoal',
+    progress: 100,
+    status: 'concluida',
+    dueDate: new Date('2024-12-31'),
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-25'),
+  },
+  {
+    id: '5',
+    userId: '1',
+    title: 'Viajar com a família',
+    description: 'Planejar uma viagem de férias',
+    category: 'familia',
+    progress: 30,
+    status: 'pausada',
+    dueDate: new Date('2024-08-31'),
+    createdAt: new Date('2024-02-01'),
+    updatedAt: new Date('2024-02-10'),
+  },
+];
+
+// Eventos mock
+export const mockEvents: Event[] = [
+  {
+    id: '1',
+    userId: '1',
+    title: 'Reunião de pais na escola',
+    description: 'Reunião trimestral para acompanhar o desenvolvimento',
+    date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Em 1 semana
+    type: 'escola',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '2',
+    userId: '1',
+    title: 'Aniversário da mãe',
+    description: 'Celebração em família',
+    date: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // Em 10 dias
+    type: 'familia',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '3',
+    userId: '1',
+    title: 'Workshop de marketing digital',
+    description: 'Evento online sobre estratégias de marketing',
+    date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // Em 3 dias
+    type: 'trabalho',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
+
+// Finanças mock
+export const mockFinances: Finance[] = [
+  {
+    id: '1',
+    userId: '1',
+    type: 'receita',
+    category: 'Consultoria',
+    amount: 2500,
+    description: 'Projeto de marketing para cliente',
+    date: new Date(),
+    isBusiness: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '2',
+    userId: '1',
+    type: 'despesa',
+    category: 'Alimentação',
+    amount: 450,
+    description: 'Compras do mês',
+    date: new Date(),
+    isBusiness: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '3',
+    userId: '1',
+    type: 'receita',
+    category: 'Curso online',
+    amount: 800,
+    description: 'Venda do curso de produtividade',
+    date: new Date(Date.now() - 24 * 60 * 60 * 1000), // Ontem
+    isBusiness: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '4',
+    userId: '1',
+    type: 'despesa',
+    category: 'Marketing',
+    amount: 200,
+    description: 'Anúncios no Instagram',
+    date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // Há 2 dias
+    isBusiness: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
+
+// Cursos mock
+export const mockCourses: Course[] = [
+  {
+    id: '1',
+    title: 'Produtividade para Mães Empreendedoras',
+    description: 'Aprenda a organizar sua vida pessoal e profissional',
+    duration: 120,
+    progress: 75,
+    isPremium: false,
+    category: 'produtividade',
+    thumbnail: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop',
+    lessons: [
+      { title: 'Organização de Rotina', duration: 20, completed: true },
+      { title: 'Delegação de Tarefas', duration: 25, completed: true },
+      { title: 'Gestão de Tempo', duration: 30, completed: true },
+      { title: 'Equilíbrio Vida-Trabalho', duration: 25, completed: false },
+      { title: 'Produtividade Digital', duration: 20, completed: false },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '2',
+    title: 'Marketing Digital para Pequenos Negócios',
+    description: 'Estratégias práticas para crescer seu negócio online',
+    duration: 180,
+    progress: 30,
+    isPremium: true,
+    category: 'marketing',
+    thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop',
+    lessons: [
+      { title: 'Redes Sociais', duration: 30, completed: true },
+      { title: 'Email Marketing', duration: 25, completed: true },
+      { title: 'SEO Básico', duration: 35, completed: false },
+      { title: 'Google Ads', duration: 40, completed: false },
+      { title: 'Analytics', duration: 50, completed: false },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '3',
+    title: 'Gestão Financeira Pessoal',
+    description: 'Organize suas finanças e alcance seus objetivos',
+    duration: 90,
+    progress: 0,
+    isPremium: true,
+    category: 'financas',
+    thumbnail: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=200&fit=crop',
+    lessons: [
+      { title: 'Orçamento Pessoal', duration: 20, completed: false },
+      { title: 'Investimentos Básicos', duration: 25, completed: false },
+      { title: 'Planejamento de Aposentadoria', duration: 25, completed: false },
+      { title: 'Proteção Financeira', duration: 20, completed: false },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '4',
+    title: 'Mindfulness e Equilíbrio',
+    description: 'Técnicas para reduzir o estresse e encontrar equilíbrio',
+    duration: 60,
+    progress: 100,
+    isPremium: false,
+    category: 'outros',
+    thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop',
+    lessons: [
+      { title: 'Introdução ao Mindfulness', duration: 15, completed: true },
+      { title: 'Técnicas de Respiração', duration: 20, completed: true },
+      { title: 'Meditação Guiada', duration: 15, completed: true },
+      { title: 'Aplicação no Dia a Dia', duration: 10, completed: true },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+]; 
