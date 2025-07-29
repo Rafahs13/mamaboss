@@ -107,7 +107,7 @@ const CalendarGrid: React.FC<{
     const daysInMonth = lastDay.getDate();
     const firstDayOfWeek = firstDay.getDay();
 
-    const days = [];
+    const days: Array<{ date: Date; isCurrentMonth: boolean }> = [];
     
     // Adicionar dias do mês anterior para completar a primeira semana
     for (let i = 0; i < firstDayOfWeek; i++) {
