@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mamaboss/static/css/main.e6c13ad2.css",
+    "main.js": "/mamaboss/static/js/main.1e037eb5.js",
+    "static/js/453.2df7f948.chunk.js": "/mamaboss/static/js/453.2df7f948.chunk.js",
+    "index.html": "/mamaboss/index.html",
+    "main.e6c13ad2.css.map": "/mamaboss/static/css/main.e6c13ad2.css.map",
+    "main.1e037eb5.js.map": "/mamaboss/static/js/main.1e037eb5.js.map",
+    "453.2df7f948.chunk.js.map": "/mamaboss/static/js/453.2df7f948.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.1e037eb5.js"
+  ]
+}
