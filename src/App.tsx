@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { googleAuthConfig, isGoogleAuthConfigured } from './config/googleAuth';
 import { TaskProvider } from './contexts/TaskContext';
 import { GoalProvider } from './contexts/GoalContext';
 import { EventProvider } from './contexts/EventContext';
@@ -127,23 +129,25 @@ const AppContent: React.FC = () => {
 
 function App() {
   return (
-    <AuthProvider>
-      <TaskProvider>
-        <GoalProvider>
-          <EventProvider>
-            <FinanceProvider>
-              <CourseProvider>
-                <SettingsProvider>
-                  <SubscriptionProvider>
-                    <AppContent />
-                  </SubscriptionProvider>
-                </SettingsProvider>
-              </CourseProvider>
-            </FinanceProvider>
-          </EventProvider>
-        </GoalProvider>
-      </TaskProvider>
-    </AuthProvider>
+    <GoogleOAuthProvider clientId={googleAuthConfig.clientId}>
+      <AuthProvider>
+        <TaskProvider>
+          <GoalProvider>
+            <EventProvider>
+              <FinanceProvider>
+                <CourseProvider>
+                  <SettingsProvider>
+                    <SubscriptionProvider>
+                      <AppContent />
+                    </SubscriptionProvider>
+                  </SettingsProvider>
+                </CourseProvider>
+              </FinanceProvider>
+            </EventProvider>
+          </GoalProvider>
+        </TaskProvider>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 

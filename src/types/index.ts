@@ -273,4 +273,31 @@ export interface PaymentForm {
   cardExpiry?: string;
   cardCvv?: string;
   installments?: number;
+}
+
+// Tipos para Google OAuth
+export interface GoogleUser {
+  id: string;
+  name: string;
+  email: string;
+  picture: string;
+  given_name?: string;
+  family_name?: string;
+  locale?: string;
+  verified_email?: boolean;
+}
+
+export interface GoogleCredentialResponse {
+  credential: string;
+  select_by: string;
+}
+
+export interface GoogleAuthConfig {
+  clientId: string;
+  clientSecret?: string;
+}
+
+export interface GoogleLoginForm {
+  credential: string;
+  googleUser: GoogleUser;
 } 

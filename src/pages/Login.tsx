@@ -23,6 +23,8 @@ import { Heart, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { LoginForm } from '../types';
+import { CredentialResponse } from '@react-oauth/google';
+import { GoogleLoginButton } from '../components/common/GoogleLoginButton';
 
 export const Login: React.FC = () => {
   const [form, setForm] = useState<LoginForm>({
@@ -33,7 +35,7 @@ export const Login: React.FC = () => {
   const [errors, setErrors] = useState<Partial<LoginForm>>({});
   const [isLoading, setIsLoading] = useState(false);
   
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -90,6 +92,38 @@ export const Login: React.FC = () => {
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
     }
+  };
+
+  const handleGoogleSuccess = async (response: CredentialResponse) => {
+    try {
+      await loginWithGoogle(response);
+      toast({
+        title: 'Login realizado com sucesso!',
+        description: 'Bem-vinda de volta!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      navigate('/dashboard');
+    } catch (error) {
+      toast({
+        title: 'Erro no login do Google',
+        description: error instanceof Error ? error.message : 'Tente novamente',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleGoogleError = () => {
+    toast({
+      title: 'Erro no login do Google',
+      description: 'Não foi possível fazer login com o Google. Tente novamente.',
+      status: 'error',
+      duration: 5000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -175,6 +209,14 @@ export const Login: React.FC = () => {
             </Button>
           </VStack>
         </form>
+
+        <Divider my={6} />
+
+        {/* Google Login */}
+        <GoogleLoginButton
+          onSuccess={handleGoogleSuccess}
+          onError={handleGoogleError}
+        />
 
         <Divider my={6} />
 

@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
 import { User, AuthState, LoginForm, RegisterForm } from '../types';
+import { CredentialResponse } from '@react-oauth/google';
 import { storage, STORAGE_KEYS } from '../utils/storage';
 import { mockUser } from '../utils/mockData';
+import { GoogleAuthService } from '../services/googleAuthService';
 
 // Tipos para o contexto
 interface AuthContextType extends AuthState {
   login: (form: LoginForm) => Promise<void>;
+  loginWithGoogle: (response: CredentialResponse) => Promise<void>;
   register: (form: RegisterForm) => Promise<void>;
   logout: () => void;
   updateUser: (user: Partial<User>) => void;
@@ -97,6 +100,23 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  // Função de login com Google
+  const loginWithGoogle = async (response: CredentialResponse): Promise<void> => {
+    dispatch({ type: 'SET_LOADING', payload: true });
+    
+    try {
+      // Processar login do Google
+      const user = await GoogleAuthService.handleGoogleLogin(response.credential);
+      
+      // Salvar usuário no storage
+      storage.set(STORAGE_KEYS.USER, user);
+      dispatch({ type: 'SET_USER', payload: user });
+    } catch (error) {
+      dispatch({ type: 'SET_LOADING', payload: false });
+      throw error;
+    }
+  };
+
   // Função de registro
   const register = async (form: RegisterForm): Promise<void> => {
     dispatch({ type: 'SET_LOADING', payload: true });
@@ -145,6 +165,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const value: AuthContextType = {
     ...state,
     login,
+    loginWithGoogle,
     register,
     logout,
     updateUser,
