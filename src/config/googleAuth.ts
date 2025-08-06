@@ -19,7 +19,7 @@ export const googleSignInConfig = {
 // URLs de redirecionamento (para produção)
 export const googleRedirectUrls = {
   development: 'http://localhost:3000',
-  production: 'https://your-domain.com',
+  production: window.location.origin,
 };
 
 // Escopos solicitados
