@@ -132,25 +132,22 @@ export const PremiumModal: React.FC<PremiumModalProps> = ({
     setError(null);
 
     try {
-      // Para teste, vamos simular o pagamento primeiro
       console.log('Iniciando processo de pagamento...');
       
-      // Simular criação de preferência (para teste)
-      const mockPreferenceId = `test_pref_${Date.now()}`;
-      console.log('Preferência simulada criada:', mockPreferenceId);
+      // 🚀 MODO PRODUÇÃO - Mercado Pago
+      // Para ativar, configure as credenciais no arquivo config/mercadopago.ts
+      // e descomente as linhas abaixo:
       
-      setPreferenceId(mockPreferenceId);
-      setWalletInitialization(true);
-      
-      // 🚀 PARA ATIVAR O MODO DE PRODUÇÃO:
-      // 1. Comente as linhas acima (simulação)
-      // 2. Descomente as linhas abaixo (produção)
-      // 3. Configure as credenciais corretas no arquivo config/mercadopago.ts
-      // 4. Configure webhooks para receber notificações
-      // 
       // const preferenceId = await createPreference();
       // setPreferenceId(preferenceId);
       // setWalletInitialization(true);
+      
+      // ⚠️ MODO DESENVOLVIMENTO - Simulação
+      // Comente as linhas acima e descomente as linhas abaixo para teste:
+      const mockPreferenceId = `dev_pref_${Date.now()}`;
+      console.log('Preferência de desenvolvimento criada:', mockPreferenceId);
+      setPreferenceId(mockPreferenceId);
+      setWalletInitialization(true);
       
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Erro desconhecido');
@@ -301,14 +298,14 @@ export const PremiumModal: React.FC<PremiumModalProps> = ({
                   Escolha sua forma de pagamento:
                 </Text>
                 
-                {/* Simulação para teste */}
-                {preferenceId.startsWith('test_pref_') ? (
-                  <VStack spacing={4} p={4} bg="gray.50" borderRadius="md">
-                    <Text fontSize="sm" fontWeight="bold">
-                      🧪 Modo de Teste - Simulação de Pagamento
+                {/* Modo Desenvolvimento */}
+                {preferenceId.startsWith('dev_pref_') ? (
+                  <VStack spacing={4} p={4} bg="blue.50" borderRadius="md">
+                    <Text fontSize="sm" fontWeight="bold" color="blue.700">
+                      🔧 Modo Desenvolvimento - Simulação de Pagamento
                     </Text>
-                    <Text fontSize="xs" color="gray.600">
-                      Esta é uma simulação para teste. Em produção, o Wallet do Mercado Pago seria exibido aqui.
+                    <Text fontSize="xs" color="blue.600">
+                      Esta é uma simulação para desenvolvimento. Configure o Mercado Pago para produção.
                     </Text>
                     
                     <HStack spacing={3}>
@@ -330,7 +327,7 @@ export const PremiumModal: React.FC<PremiumModalProps> = ({
                       </Button>
                     </HStack>
                     
-                    <Text fontSize="xs" color="gray.500">
+                    <Text fontSize="xs" color="blue.500">
                       Preferência ID: {preferenceId}
                     </Text>
                   </VStack>

@@ -232,19 +232,6 @@ export const Login: React.FC = () => {
             </Link>
           </HStack>
         </VStack>
-
-        {/* Demo Credentials */}
-        <Box mt={6} p={4} bg="gray.50" borderRadius="lg">
-          <Text fontSize="sm" color="gray.600" mb={2}>
-            <strong>Credenciais de demonstração:</strong>
-          </Text>
-          <Text fontSize="sm" color="gray.500">
-            Email: rafaela@mamaboss.com.br
-          </Text>
-          <Text fontSize="sm" color="gray.500">
-            Senha: 123456
-          </Text>
-        </Box>
       </Box>
     </Flex>
   );

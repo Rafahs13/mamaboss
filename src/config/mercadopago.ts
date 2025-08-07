@@ -1,25 +1,39 @@
-// Configurações do Mercado Pago
-export const MERCADO_PAGO_CONFIG = {
-  PUBLIC_KEY: process.env.REACT_APP_MERCADO_PAGO_PUBLIC_KEY || 'APP_USR-907f81eb-e7af-40ca-8bb1-b1d5438afe95',
-  ACCESS_TOKEN: process.env.REACT_APP_MERCADO_PAGO_ACCESS_TOKEN || 'APP_USR-4694434875461012-072819-94bdaadc61c4b5f5ad54c065bb4806e6-1763879487',
-  CLIENT_ID: process.env.REACT_APP_MERCADO_PAGO_CLIENT_ID || '4694434875461012',
-  CLIENT_SECRET: process.env.REACT_APP_MERCADO_PAGO_CLIENT_SECRET || 'jGtL4UCGSfsBhZHPeabNYbWkkUab8Wcy',
-  BASE_URL: 'https://api.mercadopago.com',
+// Configuração do Mercado Pago
+// Para produção, configure as credenciais corretas
+
+export const mercadopagoConfig = {
+  // Credenciais de Produção
+  publicKey: process.env.REACT_APP_MERCADOPAGO_PUBLIC_KEY || '',
+  accessToken: process.env.REACT_APP_MERCADOPAGO_ACCESS_TOKEN || '',
+  
+  // URLs de retorno
+  successUrl: process.env.NODE_ENV === 'production' 
+    ? `${window.location.origin}/payment/success`
+    : 'http://localhost:3000/payment/success',
+    
+  failureUrl: process.env.NODE_ENV === 'production'
+    ? `${window.location.origin}/payment/failure`
+    : 'http://localhost:3000/payment/failure',
+    
+  pendingUrl: process.env.NODE_ENV === 'production'
+    ? `${window.location.origin}/payment/pending`
+    : 'http://localhost:3000/payment/pending',
+    
+  // Webhook URL (para produção)
+  webhookUrl: process.env.REACT_APP_MERCADOPAGO_WEBHOOK_URL || '',
 };
 
-// URLs de retorno
-export const getReturnUrls = () => ({
-  success: `${window.location.origin}/subscription?status=success`,
-  failure: `${window.location.origin}/subscription?status=failure`,
-  pending: `${window.location.origin}/subscription?status=pending`,
-});
+// Função para validar se a configuração está completa
+export const isMercadoPagoConfigured = (): boolean => {
+  return !!mercadopagoConfig.publicKey && 
+         !!mercadopagoConfig.accessToken && 
+         mercadopagoConfig.publicKey.trim() !== '' && 
+         mercadopagoConfig.accessToken.trim() !== '';
+};
 
-// URL do webhook para produção
-export const getWebhookUrl = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return `${window.location.origin}/api/webhook/mercadopago`;
-  }
-  return undefined; // Não usar webhook em desenvolvimento
+// Função para obter o ambiente (sandbox/production)
+export const getMercadoPagoEnvironment = (): 'sandbox' | 'production' => {
+  return process.env.NODE_ENV === 'production' ? 'production' : 'sandbox';
 };
 
 // Configurações de produtos
